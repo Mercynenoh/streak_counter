@@ -83,7 +83,7 @@ h4 {
   width: 30vw;
   height: 30vh;
   padding: 16px;
-  z-index: 1001;
+  z-index: 1001;  
   background-color:  #fbfcfb;
   color: red;
   box-shadow: 0 2px 8px rbga(0, 0, 0, 0.26);

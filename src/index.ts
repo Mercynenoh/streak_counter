@@ -12,6 +12,7 @@ let plus = document.querySelector(".plus_one") as HTMLImageElement;
 let bottom = document.querySelector(".bottom") as HTMLDivElement;
 let activity = document.querySelector(".activity") as HTMLElement;
 let popup = document.getElementById("single") as HTMLDivElement;
+let validation =document.getElementById('validation') as HTMLParagraphElement
 
 class newstreaks {
   private mystreak: Streaks[] = [];
@@ -64,16 +65,22 @@ class newstreaks {
   displayOne(i: number) {
     popup.innerHTML = "";
     const item = this.mystreak[i];
+    let dateNow = new Date();
+    let date = new Date(item.date);
+    let start = dateNow.getTime();
+    let beststreak = date.getTime();
+    let diff = Math.ceil((beststreak - start) / (24 * 3600 * 1000));
 
     const main = document.createElement("div");
     const h1 = document.createElement("h1");
     const h3 = document.createElement("img");
     const p = document.createElement("p");
+    const bests = document.createElement("p");
     const deleted = document.createElement("button");
     const close = document.createElement("button");
     deleted.style.backgroundColor = "red";
     deleted.textContent = "Delete";
-    deleted.style.width = "60px";
+    deleted.style.width = "90px";
     deleted.style.borderRadius = "8px";
     deleted.style.marginRight = "15px";
     deleted.addEventListener("click", () => {
@@ -82,7 +89,7 @@ class newstreaks {
     });
 
     close.textContent = "Close";
-    close.style.width = "60px";
+    close.style.width = "90px";
     close.style.borderRadius = "8px";
     close.addEventListener("click", () => {
       popup.style.display = "none";
@@ -91,11 +98,15 @@ class newstreaks {
     h1.textContent = item.title;
     h3.src = item.image;
     p.textContent = item.date;
+    bests.textContent=`${diff} days`
+
+    bests.style.padding='10px'
 
     main.appendChild(h1);
     h1.style.color = "black";
     main.appendChild(h3);
     main.appendChild(p);
+    main.append(bests)
     main.appendChild(deleted);
     main.append(close);
     popup.append(main);
@@ -104,17 +115,34 @@ class newstreaks {
 }
 
 const streaks = new newstreaks();
+
 submit.addEventListener("click", (e) => {
+  if(inputone.value==="" || inputtwo.value===""||inputthree.value===""){
+    inputone.style.border='2px solid red'
+    inputtwo.style.border='2px solid red'
+    inputthree.style.border='2px solid red'
+    validation.innerText='Cannot Submit Empty Fields'
+    validation.style.color='Red'
+    validation.style.fontSize='25px'
+    validation.style.textAlign='center'
+      }
+      else{
   e.preventDefault();
+  inputone.style.border='1px solid black'
+    inputtwo.style.border='1px solid black'
+    inputthree.style.border='1px solid black'
   const title = inputone.value;
   const image = inputtwo.value;
   const date = inputthree.value;
+
 
   inputone.value = "";
   inputtwo.value = "";
   inputthree.value = "";
   streaks.createStreak({ title, image, date });
+      }
 });
+
 
 bottom.style.display = "none";
 
@@ -137,4 +165,4 @@ const removeOne = (streaksIndex: number) => {
   streaks.deleteStreak(streaksIndex);
 };
 
-popup.style.display = "none";
+popup.style.display = "none";   
