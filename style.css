@@ -3,15 +3,13 @@
   padding: 0;
 }
 .plus_one {
-  height: 50px;
   color: white;
 }
 #minus_one {
-  height: 50px;
   color: white;
 }
 #list {
-  font-size: 60px;
+  font-size: 100px;
   color: white;
 }
 .container-fluid {
@@ -37,7 +35,15 @@ h1 {
   background-color: white;
   padding: 5px;
   width: 500px;
-  height: 200px;
+  height: 250px;
+}
+input{
+  height: 30px;
+  padding-top: 8px;
+}
+.streaks{
+ display: flex;
+ align-items: center;
 }
 h4 {
   color: #fb704d;
@@ -45,6 +51,7 @@ h4 {
 .task {
   background-color: #fb704d;
   color: white;
+  height: 50px;
 }
 button {
   background-color: #fb704d;
@@ -53,8 +60,13 @@ button {
   padding-top: 5px;
 }
 
-h4 {
+.add{
   color: white;
+}
+#submit{
+  border: 2px solid black;
+ margin-top: 15px;
+ border-radius: 8px;
 }
 
 .streaks {
@@ -73,6 +85,10 @@ h4 {
   background-color: #fb704d;
   height: 50vh;
 }
+.minus{
+  display: flex;
+  align-items: center;
+}
 #single {
   position: fixed;
   top: 30vh;
@@ -81,11 +97,11 @@ h4 {
   justify-content: space-evenly;
   left: 20vw;
   width: 30vw;
-  height: 30vh;
+  height: 40vh;
   padding: 16px;
   z-index: 1001;  
   background-color:  #fbfcfb;
   color: red;
-  box-shadow: 0 2px 8px rbga(0, 0, 0, 0.26);
+  box-shadow: 0 2px 8px  #474646;
   align-items: center;
 }

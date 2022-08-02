@@ -10,7 +10,7 @@ let remove = document.querySelector(".minus_one");
 let main = document.querySelector(".main");
 let plus = document.querySelector(".plus_one");
 let bottom = document.querySelector(".bottom");
-let activity = document.querySelector(".activity");
+let activity = document.querySelector(".header");
 let popup = document.getElementById("single");
 let validation = document.getElementById('validation');
 class newstreaks {
@@ -31,14 +31,18 @@ class newstreaks {
     }
     displayStreaks() {
         // console.log(this.mystreak);
-        this.mystreak.length === 0 ? allnewstreaks.innerText = "No activity" :
-            allnewstreaks.innerHTML = "";
+        this.mystreak.length === 0 ? activity.innerHTML = "You have no Activity" :
+            activity.innerHTML = "Activities";
+        activity.style.textAlign = 'center';
+        allnewstreaks.innerHTML = "";
         this.mystreak.map((streaks, i) => {
             const mainone = document.createElement("div");
             const h1 = document.createElement("h1");
             const img = document.createElement("img");
             const p = document.createElement("p");
             const deleted = document.createElement("button");
+            img.style.height = "200px";
+            img.style.width = "200px";
             h1.textContent = `${streaks.title}`;
             h1.style.color = "black";
             img.src = `${streaks.image}`;
@@ -63,15 +67,18 @@ class newstreaks {
         let beststreak = date.getTime();
         let diff = Math.ceil((beststreak - start) / (24 * 3600 * 1000));
         const main = document.createElement("div");
-        const h1 = document.createElement("h1");
+        const h1 = document.createElement("h3");
         const h3 = document.createElement("img");
         const p = document.createElement("p");
         const bests = document.createElement("p");
         const deleted = document.createElement("button");
         const close = document.createElement("button");
+        h3.style.height = "200px";
+        h3.style.width = "400px";
         deleted.style.backgroundColor = "red";
         deleted.textContent = "Delete";
         deleted.style.width = "90px";
+        deleted.style.height = "40px";
         deleted.style.borderRadius = "8px";
         deleted.style.marginRight = "15px";
         deleted.addEventListener("click", () => {
@@ -80,14 +87,14 @@ class newstreaks {
         });
         close.textContent = "Close";
         close.style.width = "90px";
+        close.style.height = "40px";
         close.style.borderRadius = "8px";
         close.addEventListener("click", () => {
             popup.style.display = "none";
         });
         h1.textContent = item.title;
         h3.src = item.image;
-        p.textContent = item.date;
-        bests.textContent = `${diff} days`;
+        bests.textContent = ` Posted ${diff} days ago`;
         bests.style.padding = '10px';
         main.appendChild(h1);
         h1.style.color = "black";
@@ -103,12 +110,12 @@ class newstreaks {
 const streaks = new newstreaks();
 submit.addEventListener("click", (e) => {
     if (inputone.value === "" || inputtwo.value === "" || inputthree.value === "") {
-        inputone.style.border = '2px solid red';
-        inputtwo.style.border = '2px solid red';
-        inputthree.style.border = '2px solid red';
-        validation.innerText = 'Cannot Submit Empty Fields';
+        inputone.style.border = '1px solid red';
+        inputtwo.style.border = '1px solid red';
+        inputthree.style.border = '1px solid red';
+        validation.innerText = ' Mercy Cannot Submit Empty Fields';
         validation.style.color = 'Red';
-        validation.style.fontSize = '25px';
+        validation.style.fontSize = '20px';
         validation.style.textAlign = 'center';
     }
     else {
